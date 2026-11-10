@@ -10,7 +10,7 @@ The rule: **code decides every fact, and the model only writes prose about facts
 |---|---|---|
 | Find files, parse workbooks by label, foot totals | Code | A wrong number is the worst error a PMR can make. Parsing has one right answer, so code must find it. |
 | Rank contributors, detractors and largest positions; pick featured funds | Code | Ranking is arithmetic on flash cells (REQ 1.3 to 1.5). |
-| Compliance, commitments, IC-log approvals and reversals | Code | These rules are stated exactly in the spec, and date logic is easy to get subtly wrong in prose. |
+| Compliance, commitments, IC-log approvals and reversals | Code | These rules are stated exactly in the requirements, and date logic is easy to get subtly wrong in prose. |
 | House style: fonts, colors, table fills, section order | Code | Measured from the prior PMR's PDF on every run, so nothing is typed in. |
 | Read values off the outlook deck's chart **images** | Model | No text source exists. Code can't read a bar chart without a vision model. |
 | Fund commentary, strategy descriptions, market update | Model | Summarizing a manager letter in house voice is a language task. |
@@ -74,10 +74,10 @@ Approval records a hash of everything the report says. If any input, figure, sen
 - **Ambiguity and entity resolution.** Fund names are normalized for case, punctuation, numerals and legal suffixes ("Fund III" = "Fund 3", ", L.P."). A manager report matches a fund only when the fund's name appears in its text, never its filename. An ambiguous match is flagged for the reviewer, not guessed. A featured fund with no report gets the prior PMR's own "not available" wording and no invented drivers. IC-log actions are judged as of quarter-end, so a withdrawal after quarter-end leaves the approval in this quarter's totals.
 - **With more time,** I would: score the model's chart readings against a hand-labeled set and track accuracy, cost and latency per call; check numbers by position as well as by string, since a correct number in the wrong sentence passes today; and add a Word output.
 
-## 6. Spec conflicts and what I left out
+## 6. Judgment calls and what I left out
 
-- **Two IRRs.** The overview's since-inception IRR and multiple come from `Corvane Initiated Investments` (9.3%), since the overview describes "the funded investments". The client portfolio row (10.2%, 1.45x) also includes realized investments. The 3Q25 flash in the package is empty, so I can't confirm which one the prior report used.
+- **Two IRRs.** The overview's since-inception IRR and multiple come from `Corvane Initiated Investments` (9.3%), since the overview describes "the funded investments". The client portfolio row (10.2%, 1.45x) also includes realized investments. The 3Q25 flash in the inputs is empty, so I can't confirm which one the prior report used.
 - **1-year return:** `FundingStatus(Agg)` gives 5.457% and `ReturnsMultiples(Agg)` gives 5.456%. I use the first, per REQ 1.9. The gap comes from realized investments, not an error.
 - **Exact dollars.** The prior PMR rounds fund dollar figures to thousands. I print them to the dollar ("$1,367,036") so each one reconciles to its flash cell. Switching to the prior PMR's rounding would need the number check to compare rounded values.
-- **Separators.** The prior PMR uses em dashes in some labels. I print colons ("Northgate Logistics Partners: $40.0M"). Either is easy to switch if Corvane prefers the dash.
-- **Left out:** embedding `flash_4Q25.pdf` as the appendix. The prior PMR re-tables the flash in house style, so I do the same from the workbook. I also skipped OpenAI as a second provider, because one model behind a cache and source checks keeps the behavior easier to audit. And I skipped Docker, because a pinned `requirements.txt` installs with one command on Windows.
+- **Separators.** The prior PMR uses em dashes in some labels. I print colons ("Northgate Logistics Partners: $40.0M"). Either is easy to switch if the house style calls for the dash.
+- **Left out:** embedding `flash_4Q25.pdf` as the appendix. The prior PMR re-tables the flash in house style, so I do the same from the workbook. I also skipped OpenAI as a second provider, because one model behind a cache and source checks keeps the behavior easier to audit. The command line needs no container, because a pinned `requirements.txt` installs with one command on Windows; the Dockerfile packages only the web app.
