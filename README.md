@@ -4,7 +4,7 @@ Builds a client's quarterly Performance Measurement Report (PMR) as a PDF from a
 
 ## About this project
 
-I built this as a take-home engineering exercise. The scenario: a real-estate investment advisor (here "Corvane Advisors") assembles a 10 to 15 page quarterly report for each institutional client by hand. The task was to automate it, matching the prior quarter's report in structure, tone, exhibits and numbers.
+A real-estate investment advisor (here "Corvane Advisors") assembles a 10 to 15 page quarterly report for each institutional client by hand. This program automates it, matching the prior quarter's report in structure, tone, exhibits and numbers.
 
 Everything in `inputs/` is synthetic. The firm, the client (Cascadia Public Employees' Retirement System, "CPERS"), every fund, every figure and every person named are fictional.
 
