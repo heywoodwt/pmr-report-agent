@@ -10,7 +10,7 @@ A **warning** lets the draft proceed and is shown to the reviewer. A **blocker**
 - The prior PMR is the latest populated PMR for the client from an earlier quarter. One-page stubs (`prior_pmr_2Q25.pdf` is "archived") are skipped. If the latest is not the immediately preceding quarter, the run proceeds with a warning.
 - Bracketed endnote markers (`[n]`) are removed when a prior PMR is read. Next quarter's prior PMR will be a report this program generated, and earlier builds of it printed these markers. Without this, a limit reads as `<=40% per sector[105]` and the allowable allocation range is not found.
 - `allocation_history.xlsx` has no client column. It is accepted, and its current-quarter NAV must match the flash total within USD 1MM, because the file states NAV in whole USD millions and rounding alone can differ by 0.5MM. A larger gap is a warning that the file may belong to another client.
-- Zip archives in the drop folder are accepted and unpacked, although the spec promises the `inputs/` layout, because preparers receive drop folders as zip files. The unpacking rules and limits are in README, [Zip archives](README.md#zip-archives).
+- Zip archives in the drop folder are accepted and unpacked, although the requirements assume a plain `inputs/` folder, because preparers receive drop folders as zip files. The unpacking rules and limits are in README, [Zip archives](README.md#zip-archives).
 
 ## Client identity
 - The short code is resolved from the prior PMR's definition `Full Name ("CODE")`, matched against client names that appear in populated flashes. No code-to-name table exists in the source.
@@ -18,7 +18,7 @@ A **warning** lets the draft proceed and is shown to the reviewer. A **blocker**
 
 ## Flash parsing
 - Sleeves are detected structurally: a label row with no numbers that reappears later with numbers (its subtotal). Every row between them is a fund. Sleeve names and fund counts are never assumed.
-- Structural labels stated by the spec (`Corvane Initiated Investments`, `Ex-US Portfolio`, sheet names and column headers) are constants. Client, benchmark, fund names and limits are always read from inputs.
+- Structural labels fixed by the file format (`Corvane Initiated Investments`, `Ex-US Portfolio`, sheet names and column headers) are constants. Client, benchmark, fund names and limits are always read from inputs.
 - Blank cash-flow cells count as zero in sums (a blank Contribution means no contribution). Blank return cells stay blank (Tidewater has no quarterly TWR) and are never shown as 0.0%.
 - Footing tolerance: USD 1.00 for dollar columns and 0.01 percentage points for percentage columns, because the flash rounds per-fund percentages to three decimal places.
 
@@ -26,7 +26,7 @@ A **warning** lets the draft proceed and is shown to the reviewer. A **blocker**
 - The client's benchmark is the `AnnReturns(Agg)` row that the prior PMR names. The sheet also carries `NPI + 50 BPS`, which the prior PMR does not mention. Zero or several matches is a blocker.
 
 ## IC log and commitments
-- Approvals and reversals are judged as of quarter-end. A withdrawal or lapse dated after quarter-end does not remove an approval from this quarter's totals. This mirrors the spec's rule that an approval dated after quarter-end does not count.
+- Approvals and reversals are judged as of quarter-end. A withdrawal or lapse dated after quarter-end does not remove an approval from this quarter's totals. This mirrors REQ 1.6: an approval dated after quarter-end does not count.
 - A reversal is paired with the most recent earlier, unreversed approval for the same canonical fund.
 - An approval made and reversed inside the same quarter is neither a new commitment nor a note; the client was never told of it.
 - An approval this quarter for a fund already in the flash is treated as funded and raises a warning.
@@ -55,7 +55,7 @@ A **warning** lets the draft proceed and is shown to the reviewer. A **blocker**
 - A prior PMR section that no builder maps to is a blocker (`section_unbuilt`), and the draft shows its heading with a placeholder. Adding a new kind of section needs code, which is safer than guessing at its content.
 - The prior PMR was built with reportlab, including its charts, so the report uses reportlab too. Charts are vector drawings, so their labels are extractable text that the number check can read.
 - The appendix re-tables the flash workbook in house style, as the prior PMR does, rather than embedding `flash_4Q25.pdf`. Blank flash cells print blank, not "$0".
-- Separators use a colon where the prior PMR used an em dash (e.g. "Northgate Logistics Partners: $40.0M, approved October 2025"). This is a style preference and is easy to switch if Corvane prefers the dash.
+- Separators use a colon where the prior PMR used an em dash (e.g. "Northgate Logistics Partners: $40.0M, approved October 2025"). This is a style preference and is easy to switch if the house style calls for the dash.
 - PDFs are written in reportlab's invariant mode, so two runs on the same inputs give byte-identical files.
 - Body text is justified, and emphasis (bold, italics, italic gray notes) follows the prior PMR's usage. ARCHITECTURE.md lists where each applies.
 - Fund dollar figures print exactly, to the dollar ("$1,367,036"), not rounded to thousands as the prior PMR does. Exact figures reconcile to the flash cell by cell. WRITEUP.md §6 lists this as a deliberate departure.
@@ -98,4 +98,4 @@ A **warning** lets the draft proceed and is shown to the reviewer. A **blocker**
 ## Project layout
 - Code lives in `src/pmr/`; the `inputs/` folder is never modified. It is read in place unless it contains a zip archive; then the CLI copies the folder to a temporary directory, unpacks the zips there, and reads the copy.
 - openpyxl rather than polars for the workbooks: parsing locates cells by label one at a time and does not need a DataFrame.
-- `python-pptx` reads the deck. The spec restricts PDF libraries and model providers, not PowerPoint readers.
+- `python-pptx` reads the deck. REQ 1.21 restricts PDF libraries and model providers, not PowerPoint readers.
