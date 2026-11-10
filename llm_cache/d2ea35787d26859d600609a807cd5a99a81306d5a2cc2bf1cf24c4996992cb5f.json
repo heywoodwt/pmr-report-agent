@@ -1,0 +1,183 @@
+{
+  "answer": {
+    "axis_max": 10,
+    "axis_min": 4,
+    "series": [
+      {
+        "name": "Appraisal Cap Rate",
+        "points": [
+          {
+            "category": "22Q1",
+            "read": "estimate",
+            "value": 4.1
+          },
+          {
+            "category": "22Q2",
+            "read": "estimate",
+            "value": 4.3
+          },
+          {
+            "category": "22Q3",
+            "read": "estimate",
+            "value": 4.2
+          },
+          {
+            "category": "22Q4",
+            "read": "estimate",
+            "value": 4.4
+          },
+          {
+            "category": "23Q1",
+            "read": "estimate",
+            "value": 4.7
+          },
+          {
+            "category": "23Q2",
+            "read": "estimate",
+            "value": 5.2
+          },
+          {
+            "category": "23Q3",
+            "read": "estimate",
+            "value": 5.4
+          },
+          {
+            "category": "23Q4",
+            "read": "estimate",
+            "value": 5.5
+          },
+          {
+            "category": "24Q1",
+            "read": "estimate",
+            "value": 5.9
+          },
+          {
+            "category": "24Q2",
+            "read": "estimate",
+            "value": 6.0
+          },
+          {
+            "category": "24Q3",
+            "read": "estimate",
+            "value": 5.9
+          },
+          {
+            "category": "24Q4",
+            "read": "estimate",
+            "value": 5.8
+          },
+          {
+            "category": "25Q1",
+            "read": "estimate",
+            "value": 5.7
+          },
+          {
+            "category": "25Q2",
+            "read": "estimate",
+            "value": 5.9
+          },
+          {
+            "category": "25Q3",
+            "read": "estimate",
+            "value": 5.6
+          },
+          {
+            "category": "25Q4",
+            "read": "estimate",
+            "value": 5.6
+          }
+        ]
+      },
+      {
+        "name": "Transaction Cap Rate",
+        "points": [
+          {
+            "category": "22Q1",
+            "read": "estimate",
+            "value": 4.7
+          },
+          {
+            "category": "22Q2",
+            "read": "estimate",
+            "value": 5.7
+          },
+          {
+            "category": "22Q3",
+            "read": "estimate",
+            "value": 4.6
+          },
+          {
+            "category": "22Q4",
+            "read": "estimate",
+            "value": 6.2
+          },
+          {
+            "category": "23Q1",
+            "read": "estimate",
+            "value": 7.2
+          },
+          {
+            "category": "23Q2",
+            "read": "estimate",
+            "value": 5.7
+          },
+          {
+            "category": "23Q3",
+            "read": "estimate",
+            "value": 7.9
+          },
+          {
+            "category": "23Q4",
+            "read": "estimate",
+            "value": 7.2
+          },
+          {
+            "category": "24Q1",
+            "read": "estimate",
+            "value": 10.3
+          },
+          {
+            "category": "24Q2",
+            "read": "estimate",
+            "value": 6.7
+          },
+          {
+            "category": "24Q3",
+            "read": "estimate",
+            "value": 6.8
+          },
+          {
+            "category": "24Q4",
+            "read": "estimate",
+            "value": 6.6
+          },
+          {
+            "category": "25Q1",
+            "read": "estimate",
+            "value": 8.3
+          },
+          {
+            "category": "25Q2",
+            "read": "estimate",
+            "value": 7.8
+          },
+          {
+            "category": "25Q3",
+            "read": "estimate",
+            "value": 6.3
+          },
+          {
+            "category": "25Q4",
+            "read": "estimate",
+            "value": 7.7
+          }
+        ]
+      }
+    ],
+    "title": "U.S. Office \u2014 Appraisal vs. Transaction Cap Rate",
+    "unit": "%"
+  },
+  "effort": "high",
+  "model": "claude-opus-5-5",
+  "task": "Read the chart in the image. Report its title as printed; the unit of the value axis; the lowest and highest value-axis tick labels as printed; and every plotted data point. For each point give the series name from the legend (use the chart title when there is a single unlabeled series), the category exactly as printed on the category axis, and the value. When the value is printed on the chart as a data label, use that number and set read to 'label'. Otherwise read it against the gridlines to the precision the axis allows and set read to 'estimate'. Report only points that are plotted; do not interpolate, extend or round series you cannot see."
+}

@@ -1,0 +1,55 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    # Target environment: Windows 11 with Python 3.12.
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r requirements.txt
+      - run: python -m pytest -q
+      - name: Run with no API keys set
+        env:
+          ANTHROPIC_API_KEY: ""
+          OPENAI_API_KEY: ""
+        run: python -m pmr --client CPERS --quarter 4Q25
+
+  web:
+    # The web front end and its Azure adapters, on the Linux image the container uses.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r requirements-web.txt
+      - run: python -m pytest -q tests/test_web.py tests/test_narrative.py tests/test_review.py
+
+  infra:
+    # Checks both OpenTofu configurations offline: no backend, mocked providers, nothing deployed.
+    # infra/tofu is the slim deployment that runs; infra/tofu-full is the full design.
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dir: [infra/tofu, infra/tofu-full]
+    defaults:
+      run:
+        working-directory: ${{ matrix.dir }}
+    env:
+      TF_VAR_state_passphrase: ci-only-passphrase-not-secret
+    steps:
+      - uses: actions/checkout@v4
+      - uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_version: 1.13.1
+      - run: tofu fmt -check -recursive
+      - run: tofu init -backend=false -input=false
+      - run: tofu validate
+      - run: tofu test

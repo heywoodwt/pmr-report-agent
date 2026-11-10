@@ -1,0 +1,56 @@
+name: demo
+
+# Manual dress rehearsal of a clean-machine run: a fresh Windows machine, the README's
+# PowerShell install steps as written, then the report. Two runners do it independently
+# and the last job checks their PDFs are byte-identical (REQ 1.18).
+on:
+  workflow_dispatch:
+
+jobs:
+  run:
+    strategy:
+      matrix:
+        machine: [1, 2]
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # README install, word for word.
+      - run: |
+          # Stop at the first failing command, as a person at the terminal would.
+          $PSNativeCommandUseErrorActionPreference = $true
+          py -3.12 -m venv .venv
+          .venv\Scripts\Activate.ps1
+          python -m pip install -r requirements.txt
+          python -c "import sys; print(sys.executable)"
+          python -m pmr --client CPERS --quarter 4Q25
+          (Get-FileHash output\CPERS_4Q25\PMR_CPERS_4Q25_draft.pdf -Algorithm SHA256).Hash | Out-File -Encoding ascii draft.sha256
+          Get-Content draft.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: demo-${{ matrix.machine }}
+          path: |
+            draft.sha256
+            output/CPERS_4Q25/PMR_CPERS_4Q25_draft.pdf
+            output/CPERS_4Q25/review.html
+
+  compare:
+    needs: run
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/download-artifact@v4
+      - run: |
+          $a = (Get-Content demo-1\draft.sha256).Trim()
+          $b = (Get-Content demo-2\draft.sha256).Trim()
+          "machine 1: $a"
+          "machine 2: $b"
+          if ($a -ne $b) { throw "The two clean runs produced different PDFs" }
+          "The two clean runs produced byte-identical PDFs"

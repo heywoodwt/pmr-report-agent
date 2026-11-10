@@ -1,0 +1,103 @@
+{
+  "answer": {
+    "axis_max": 5.0,
+    "axis_min": 3.4,
+    "series": [
+      {
+        "name": "NPI Val-Wtd Cap Rate",
+        "points": [
+          {
+            "category": "24Q1",
+            "read": "estimate",
+            "value": 4.7
+          },
+          {
+            "category": "24Q2",
+            "read": "estimate",
+            "value": 4.7
+          },
+          {
+            "category": "24Q3",
+            "read": "estimate",
+            "value": 4.7
+          },
+          {
+            "category": "24Q4",
+            "read": "estimate",
+            "value": 4.6
+          },
+          {
+            "category": "25Q1",
+            "read": "estimate",
+            "value": 4.6
+          },
+          {
+            "category": "25Q2",
+            "read": "estimate",
+            "value": 4.7
+          },
+          {
+            "category": "25Q3",
+            "read": "estimate",
+            "value": 4.6
+          },
+          {
+            "category": "25Q4",
+            "read": "estimate",
+            "value": 4.6
+          }
+        ]
+      },
+      {
+        "name": "10-Yr Treasury Yield",
+        "points": [
+          {
+            "category": "24Q1",
+            "read": "estimate",
+            "value": 4.2
+          },
+          {
+            "category": "24Q2",
+            "read": "estimate",
+            "value": 4.4
+          },
+          {
+            "category": "24Q3",
+            "read": "estimate",
+            "value": 3.8
+          },
+          {
+            "category": "24Q4",
+            "read": "estimate",
+            "value": 4.6
+          },
+          {
+            "category": "25Q1",
+            "read": "estimate",
+            "value": 4.2
+          },
+          {
+            "category": "25Q2",
+            "read": "estimate",
+            "value": 4.2
+          },
+          {
+            "category": "25Q3",
+            "read": "estimate",
+            "value": 4.2
+          },
+          {
+            "category": "25Q4",
+            "read": "estimate",
+            "value": 4.2
+          }
+        ]
+      }
+    ],
+    "title": "NPI Cap Rate vs. 10-Year Treasury",
+    "unit": "%"
+  },
+  "effort": "high",
+  "model": "claude-opus-5-5",
+  "task": "Read the chart in the image. Report its title as printed; the unit of the value axis; the lowest and highest value-axis tick labels as printed; and every plotted data point. For each point give the series name from the legend (use the chart title when there is a single unlabeled series), the category exactly as printed on the category axis, and the value. When the value is printed on the chart as a data label, use that number and set read to 'label'. Otherwise read it against the gridlines to the precision the axis allows and set read to 'estimate'. Report only points that are plotted; do not interpolate, extend or round series you cannot see."
+}

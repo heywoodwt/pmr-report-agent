@@ -1,0 +1,98 @@
+{
+  "answer": {
+    "axis_max": 70,
+    "axis_min": 0,
+    "series": [
+      {
+        "name": "Population Growth",
+        "points": [
+          {
+            "category": "Austin",
+            "read": "estimate",
+            "value": 65
+          },
+          {
+            "category": "Charlotte",
+            "read": "estimate",
+            "value": 38
+          },
+          {
+            "category": "Phoenix",
+            "read": "estimate",
+            "value": 30
+          },
+          {
+            "category": "Tampa",
+            "read": "estimate",
+            "value": 25
+          },
+          {
+            "category": "Denver",
+            "read": "estimate",
+            "value": 25
+          },
+          {
+            "category": "NY/NJ",
+            "read": "estimate",
+            "value": 9
+          },
+          {
+            "category": "Chicago",
+            "read": "estimate",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "name": "Retail Inventory Growth",
+        "points": [
+          {
+            "category": "Austin",
+            "read": "estimate",
+            "value": 30
+          },
+          {
+            "category": "Charlotte",
+            "read": "estimate",
+            "value": 17
+          },
+          {
+            "category": "Phoenix",
+            "read": "estimate",
+            "value": 17
+          },
+          {
+            "category": "Tampa",
+            "read": "estimate",
+            "value": 13
+          },
+          {
+            "category": "Denver",
+            "read": "estimate",
+            "value": 15
+          },
+          {
+            "category": "NY/NJ",
+            "read": "estimate",
+            "value": 5
+          },
+          {
+            "category": "Chicago",
+            "read": "estimate",
+            "value": 5
+          },
+          {
+            "category": "LA",
+            "read": "estimate",
+            "value": 3
+          }
+        ]
+      }
+    ],
+    "title": "Retail: Population vs. Inventory Growth, 2007\u20132025 (%)",
+    "unit": "% cumulative"
+  },
+  "effort": "high",
+  "model": "claude-opus-5-5",
+  "task": "Read the chart in the image. Report its title as printed; the unit of the value axis; the lowest and highest value-axis tick labels as printed; and every plotted data point. For each point give the series name from the legend (use the chart title when there is a single unlabeled series), the category exactly as printed on the category axis, and the value. When the value is printed on the chart as a data label, use that number and set read to 'label'. Otherwise read it against the gridlines to the precision the axis allows and set read to 'estimate'. Report only points that are plotted; do not interpolate, extend or round series you cannot see."
+}

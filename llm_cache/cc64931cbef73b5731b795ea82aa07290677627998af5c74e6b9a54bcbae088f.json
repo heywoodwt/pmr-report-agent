@@ -1,0 +1,88 @@
+{
+  "answer": {
+    "axis_max": 2.5,
+    "axis_min": 0.0,
+    "series": [
+      {
+        "name": "2025",
+        "points": [
+          {
+            "category": "Residential",
+            "read": "estimate",
+            "value": 2.2
+          },
+          {
+            "category": "Industrial",
+            "read": "estimate",
+            "value": 1.7
+          },
+          {
+            "category": "Office",
+            "read": "estimate",
+            "value": 0.6
+          },
+          {
+            "category": "Retail",
+            "read": "estimate",
+            "value": 0.2
+          }
+        ]
+      },
+      {
+        "name": "2026\u201327 (p.a.)",
+        "points": [
+          {
+            "category": "Residential",
+            "read": "estimate",
+            "value": 1.4
+          },
+          {
+            "category": "Industrial",
+            "read": "estimate",
+            "value": 1.3
+          },
+          {
+            "category": "Office",
+            "read": "estimate",
+            "value": 0.4
+          },
+          {
+            "category": "Retail",
+            "read": "estimate",
+            "value": 0.2
+          }
+        ]
+      },
+      {
+        "name": "2028\u201330 (p.a.)",
+        "points": [
+          {
+            "category": "Residential",
+            "read": "estimate",
+            "value": 1.3
+          },
+          {
+            "category": "Industrial",
+            "read": "estimate",
+            "value": 1.8
+          },
+          {
+            "category": "Office",
+            "read": "estimate",
+            "value": 0.4
+          },
+          {
+            "category": "Retail",
+            "read": "estimate",
+            "value": 0.1
+          }
+        ]
+      }
+    ],
+    "title": "Forecast NOI Growth by Sector (% per year)",
+    "unit": "%"
+  },
+  "effort": "high",
+  "model": "claude-opus-5-5",
+  "task": "Read the chart in the image. Report its title as printed; the unit of the value axis; the lowest and highest value-axis tick labels as printed; and every plotted data point. For each point give the series name from the legend (use the chart title when there is a single unlabeled series), the category exactly as printed on the category axis, and the value. When the value is printed on the chart as a data label, use that number and set read to 'label'. Otherwise read it against the gridlines to the precision the axis allows and set read to 'estimate'. Report only points that are plotted; do not interpolate, extend or round series you cannot see."
+}

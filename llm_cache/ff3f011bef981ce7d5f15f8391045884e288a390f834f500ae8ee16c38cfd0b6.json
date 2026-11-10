@@ -1,0 +1,38 @@
+{
+  "answer": {
+    "axis_max": 4,
+    "axis_min": -3,
+    "series": [
+      {
+        "name": "U.S. Private Real Estate \u2014 Fund Total Return (net)",
+        "points": [
+          {
+            "category": "Latest Qtr",
+            "read": "label",
+            "value": 1.0
+          },
+          {
+            "category": "1-Yr",
+            "read": "label",
+            "value": 3.3
+          },
+          {
+            "category": "3-Yr",
+            "read": "label",
+            "value": -2.4
+          },
+          {
+            "category": "5-Yr",
+            "read": "label",
+            "value": 3.3
+          }
+        ]
+      }
+    ],
+    "title": "U.S. Private Real Estate \u2014 Fund Total Return (net)",
+    "unit": "%"
+  },
+  "effort": "high",
+  "model": "claude-opus-5-5",
+  "task": "Read the chart in the image. Report its title as printed; the unit of the value axis; the lowest and highest value-axis tick labels as printed; and every plotted data point. For each point give the series name from the legend (use the chart title when there is a single unlabeled series), the category exactly as printed on the category axis, and the value. When the value is printed on the chart as a data label, use that number and set read to 'label'. Otherwise read it against the gridlines to the precision the axis allows and set read to 'estimate'. Report only points that are plotted; do not interpolate, extend or round series you cannot see."
+}

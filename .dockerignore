@@ -1,0 +1,12 @@
+.git
+.venv
+.idea
+.pytest_cache
+**/__pycache__
+output
+output_cold
+cold_cache
+webdata
+synthetic_inputs
+.env
+*.DS_Store

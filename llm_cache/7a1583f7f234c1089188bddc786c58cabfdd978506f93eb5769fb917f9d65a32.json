@@ -1,0 +1,25 @@
+{
+  "answer": {
+    "sentences": [
+      {
+        "quote": "One Financial Plaza (Chicago office) was written down on lower submarket comparables and a near-term lease expiry.",
+        "text": "During the quarter, One Financial Plaza, the Fund's Chicago office asset, was written down on lower submarket comparables and a near-term lease expiry."
+      },
+      {
+        "quote": "Bayfront Apartments (San Diego) was held\nroughly flat as concessions offset rent growth.",
+        "text": "Bayfront Apartments in San Diego was held roughly flat, as concessions offset rent growth."
+      },
+      {
+        "quote": "Prairie Logistics (Kansas City) contributed positively,\npartially offsetting the office drag.",
+        "text": "Prairie Logistics in Kansas City contributed positively, partially offsetting the drag from the office asset."
+      },
+      {
+        "quote": "The Manager believes core valuations are stabilizing and expects income to remain the primary driver of\nreturn near term.",
+        "text": "Looking ahead, the Manager believes core valuations are stabilizing and expects income to remain the primary driver of return in the near term."
+      }
+    ]
+  },
+  "effort": "high",
+  "model": "claude-opus-5-5",
+  "task": "Write 2 to 4 sentences of commentary on Cornerstone Core Property Fund for this quarter, drawn from the manager report above. The client report already states the Fund's role, return, income, appreciation, contribution, market value and loan-to-value from the client's own data; do not repeat any of those figures. Focus on the named assets and locations that drove the quarter, leasing or valuation events, and the Manager's outlook. Refer to the fund as \"the Fund\" and to its manager as \"the Manager\". For each sentence, give a supporting quote of at most 40 words copied character for character from the document. Write in plain, formal English for an institutional client report. Do not use em dashes or en dashes; use commas or semicolons. Do not compute differences, spreads, averages or changes; state only values as they appear in the sources. Do not use a number that is not in the text you cite."
+}

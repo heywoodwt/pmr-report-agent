@@ -1,0 +1,11 @@
+# Copy to terraform.tfvars (ignored by git) and fill in. Secrets go in environment variables:
+#   export TF_VAR_auth_client_secret=...   # the Entra app registration's client secret
+#   export TF_VAR_state_passphrase=...     # 16+ characters; encrypts state and plans
+subscription_id = "00000000-0000-0000-0000-000000000000"
+prefix          = "pmrdemo"
+location        = "westus2"
+image_tag       = "latest"
+auth_client_id  = "00000000-0000-0000-0000-000000000000"
+
+# Optional: enables live model calls and grants the managed identity access to the resource.
+# foundry_resource_id = "/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<name>"

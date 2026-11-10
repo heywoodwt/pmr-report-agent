@@ -1,0 +1,17 @@
+{
+  "answer": {
+    "sentences": [
+      {
+        "quote": "Northgate Logistics Partners is a value-add industrial fund targeting the acquisition and repositioning of infill logistics and outdoor-storage assets in high-growth Sun Belt and Mountain-West markets.",
+        "text": "Northgate Logistics Partners is a value-add industrial fund that targets the acquisition and repositioning of infill logistics and outdoor-storage assets in high-growth Sun Belt and Mountain-West markets."
+      },
+      {
+        "quote": "The strategy focuses on lease-up, mark-to-market of below-market rents, and selective development completion.",
+        "text": "The strategy focuses on lease-up, the mark-to-market of below-market rents, and selective development completion."
+      }
+    ]
+  },
+  "effort": "high",
+  "model": "claude-opus-5-5",
+  "task": "Write 1 or 2 sentences describing the strategy of Northgate Logistics Partners, a new commitment, drawn from the one-pager above: its sector, its style (for example core-plus or value-add) and what it will invest in. Do not mention the commitment amount, dates, targets or performance. Begin the first sentence with the fund's name. For each sentence, give a supporting quote of at most 40 words copied character for character from the document. Write in plain, formal English for an institutional client report. Do not use em dashes or en dashes; use commas or semicolons. Do not compute differences, spreads, averages or changes; state only values as they appear in the sources. Do not use a number that is not in the text you cite."
+}

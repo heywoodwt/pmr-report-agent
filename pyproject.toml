@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pmr"
+version = "0.1.0"
+description = "Generates the quarterly Performance Measurement Report from a folder of source documents."
+requires-python = ">=3.12"
+
+[project.scripts]
+pmr = "pmr.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+pmr_web = ["static/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

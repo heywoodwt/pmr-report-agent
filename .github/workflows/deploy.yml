@@ -1,0 +1,62 @@
+name: deploy
+
+# Builds the container image and points the Azure web app at it. Run it by hand once infra/tofu is applied.
+# Signs in to Azure through OpenID Connect as the deploy identity infra/tofu creates, so no Azure
+# secret is stored in GitHub. The repository variables come from `tofu output` (see docs/AZURE.md).
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install -r requirements-web.txt
+      - run: python -m pytest -q tests/test_web.py tests/test_narrative.py tests/test_review.py
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    # No `environment:` here: it would change the OIDC subject away from refs/heads/main, which is
+    # the only subject the deploy identity's federated credential accepts.
+    steps:
+      - uses: actions/checkout@v4
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      - name: Build and push the image
+        run: |
+          az acr login --name "${{ vars.AZURE_REGISTRY }}"
+          image="${{ vars.AZURE_REGISTRY }}.azurecr.io/pmr-web:${GITHUB_SHA}"
+          docker build --build-arg GIT_SHA="${GITHUB_SHA}" -t "$image" .
+          docker push "$image"
+      - name: Point the web app at the new image
+        run: |
+          az webapp config container set \
+            --resource-group "${{ vars.AZURE_RESOURCE_GROUP }}" \
+            --name "${{ vars.AZURE_WEB_APP }}" \
+            --container-image-name "${{ vars.AZURE_REGISTRY }}.azurecr.io/pmr-web:${GITHUB_SHA}"
+      - name: Wait for the new container to serve this commit
+        # /health alone is not enough: the old container keeps answering until the new one is up.
+        run: |
+          url="https://$(az webapp show -g "${{ vars.AZURE_RESOURCE_GROUP }}" -n "${{ vars.AZURE_WEB_APP }}" --query defaultHostName -o tsv)/version"
+          for i in $(seq 1 60); do
+            served="$(curl -fsS "$url" | python3 -c 'import json,sys; print(json.load(sys.stdin)["version"])' 2>/dev/null || true)"
+            if [ "$served" = "${GITHUB_SHA}" ]; then echo "Serving ${GITHUB_SHA}"; exit 0; fi
+            echo "Waiting: serving '${served}', expected ${GITHUB_SHA}"
+            sleep 15
+          done
+          echo "The web app did not serve ${GITHUB_SHA} within 15 minutes"; exit 1

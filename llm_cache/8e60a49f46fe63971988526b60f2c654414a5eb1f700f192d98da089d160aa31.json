@@ -1,0 +1,17 @@
+{
+  "answer": {
+    "sentences": [
+      {
+        "quote": "Ridgeline Value Fund IV is the fourth vintage in Ridgeline Capital's diversified value-add series, targeting the acquisition and repositioning of multifamily and mixed-use assets in supply-constrained coastal and Mountain-West metros.",
+        "text": "Ridgeline Value Fund IV is a closed-end diversified value-add fund that targets the acquisition and repositioning of multifamily and mixed-use assets in supply-constrained coastal and Mountain-West metros."
+      },
+      {
+        "quote": "The strategy emphasizes operational improvement, unit renovation, and mark-to-market of below-market rents, with selective ground-up completion.",
+        "text": "The strategy emphasizes operational improvement, unit renovation and the mark-to-market of below-market rents, with selective ground-up completion."
+      }
+    ]
+  },
+  "effort": "high",
+  "model": "claude-opus-5-5",
+  "task": "Write 1 or 2 sentences describing the strategy of Ridgeline Value Fund IV, a new commitment, drawn from the one-pager above: its sector, its style (for example core-plus or value-add) and what it will invest in. Do not mention the commitment amount, dates, targets or performance. Begin the first sentence with the fund's name. For each sentence, give a supporting quote of at most 40 words copied character for character from the document. Write in plain, formal English for an institutional client report. Do not use em dashes or en dashes; use commas or semicolons. Do not compute differences, spreads, averages or changes; state only values as they appear in the sources. Do not use a number that is not in the text you cite."
+}
